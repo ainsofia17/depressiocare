@@ -99,18 +99,25 @@ def load_preprocessed_data(csv_paths, json_path):
         elif not isinstance(v, list):
             json_data[k] = [v] * max_length
 
-    df_json = pd.DataFrame(json_data)
+    # Create a DataFrame from the JSON data
+    df = pd.json_normalize(json_data)
 
-    # Replace underscores with spaces
-    df_json = df_json.replace('_', ' ', regex=True) 
+    # Replace underscores with spaces and remove punctuation
+    def clean_text(x):
+        if isinstance(x, str):
+            return re.sub(r'[^\w\s]', '', x.replace('_', ' '))
+        elif isinstance(x, list):
+            return [re.sub(r'[^\w\s]', '', str(item).replace('_', ' ')) for item in x]
+        else:
+            return x
 
-    # Process signals in the DataFrame
-    for column in df_json.columns:
-        if df_json[column].dtype == 'object':  # Check if column contains strings
-            df_json[column] = df_json[column].apply(lambda x: re.sub(r'[^\w\s]', '', x) if pd.notna(x) else x)
+    for column in df.columns:
+        df[column] = df[column].apply(clean_text)
 
-        return combined_df, df_json
+    # Explode lists in DataFrame
+    df_json = pd.concat([df[col].apply(pd.Series).stack().reset_index(level=1, drop=True).to_frame(col) for col in df.columns], axis=1)
 
+    return combined_df, df_json
 @st.cache_resource
 def load_model_from_disk(model_path):
     # Load the pre-trained model
