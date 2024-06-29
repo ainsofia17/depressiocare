@@ -127,7 +127,7 @@ csv_paths = [
     'tweets_final_6_clean.csv'
 ]
 json_file_path = 'depression_lexicon.json'
-model_path = r"C:\Users\Acer\OneDrive\Desktop\UKM\Sem 5\FYP\dataset\best_model_symptoms_all_pipeline.pkl"
+model_path ='best_model_symptoms_all_pipeline.pkl'
 
 combined_df, df_json = load_preprocessed_data(csv_paths, json_file_path)
 best_model_symptoms_all = load_model_from_disk(model_path)
