@@ -287,14 +287,7 @@ if os.path.exists(model_path):
         else:
             st.write(f"Based on prediction score of {predict_score:.2f}, you MAY NOT HAVE depression. Please seek professional help for further information.")
         
-    if st.button('Restart'):
-        st.session_state.page = 0
-        st.session_state.matched_signals_1 = []
-        st.session_state.matched_signals_2 = []
-        st.session_state.matched_signals_5 = []
-        st.session_state.count_symptoms_all = 0
-        st.session_state.prediction_made = False
-        st.experimental_rerun()
+    
 
 else:
     st.error("Model file not found. Please ensure the model file 'best_model_symptoms_all_pipeline.pkl' exists.")
