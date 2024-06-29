@@ -110,6 +110,7 @@ def load_preprocessed_data(csv_paths, json_path):
             df_json[column] = df_json[column].apply(lambda x: re.sub(r'[^\w\s]', '', x) if pd.notna(x) else x)
 
         return combined_df, df_json
+        st.write("Loaded JSON data:", df_json)
 
 @st.cache_resource
 def load_model_from_disk(model_path):
