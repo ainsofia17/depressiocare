@@ -167,7 +167,7 @@ def find_depression_signals(text, signals):
 
 if os.path.exists(model_path):
     # Load the pre-trained model
-    best_model_symptoms_all = joblib.load(model_path)
+    #best_model_symptoms_all = joblib.load(model_path)
 
     # Streamlit UI for user input
     user_input = st.text_input('Enter your text based on explaination of your feelings and situations.', placeholder="Enter text...")
