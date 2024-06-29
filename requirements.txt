@@ -1,7 +1,6 @@
-chardet
 streamlit
 pandas
+chardet
+nltk
 pycaret
 joblib
-json
-nltk
