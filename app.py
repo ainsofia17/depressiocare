@@ -167,7 +167,13 @@ def find_depression_signals(text, signals):
 
 if os.path.exists(model_path):
     # Load the pre-trained model
-    #best_model_symptoms_all = joblib.load(model_path)
+    best_model_symptoms_all_new = load_model_from_disk(model_path)
+
+    # Verify model attributes (optional)
+    try:
+        print(best_model_symptoms_all_new.get_params())  # Check if this line executes without errors
+    except Exception as e:
+        print(f"Error accessing model parameters: {e}")
 
     # Streamlit UI for user input
     user_input = st.text_input('Enter your text based on explaination of your feelings and situations.', placeholder="Enter text...")
