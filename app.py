@@ -127,7 +127,7 @@ csv_paths = [
     'tweets_final_6_clean.csv'
 ]
 json_file_path = 'depression_lexicon.json'
-model_path = 'best_model_symptoms_all_pipeline.pkl'
+model_path ='best_model_symptoms_all_pipeline.pkl'
 
 combined_df, df_json = load_preprocessed_data(csv_paths, json_file_path)
 best_model_symptoms_all = load_model_from_disk(model_path)
@@ -167,7 +167,13 @@ def find_depression_signals(text, signals):
 
 if os.path.exists(model_path):
     # Load the pre-trained model
-    best_model_symptoms_all = joblib.load(model_path)
+    best_model_symptoms_all_new = load_model_from_disk(model_path)
+
+    # Verify model attributes (optional)
+    try:
+        print(best_model_symptoms_all_new.get_params())  # Check if this line executes without errors
+    except Exception as e:
+        print(f"Error accessing model parameters: {e}")
 
     # Streamlit UI for user input
     user_input = st.text_input('Enter your text based on explaination of your feelings and situations.', placeholder="Enter text...")
@@ -183,6 +189,8 @@ if os.path.exists(model_path):
         st.session_state.matched_signals_5 = []
         st.session_state.count_symptoms_all = 0
         st.session_state.prediction_made = False  # Add a flag to track prediction
+    
+
     
     if st.session_state.page == 0 and st.button('Analyze'):
         st.session_state.page = 1
@@ -279,7 +287,7 @@ if os.path.exists(model_path):
         else:
             st.write(f"Based on prediction score of {predict_score:.2f}, you MAY NOT HAVE depression. Please seek professional help for further information.")
         
-        if st.button('Restart'):
+        if st.button('Restart') and st.session_state.page == 2:
             st.session_state.page = 0
             st.session_state.matched_signals_1 = []
             st.session_state.matched_signals_2 = []
