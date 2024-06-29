@@ -1,0 +1,7 @@
+chardet
+streamlit
+pandas
+pycaret
+joblib
+json
+nltk
