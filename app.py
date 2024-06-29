@@ -119,14 +119,14 @@ def load_model_from_disk(model_path):
 
 # Paths to CSV files and JSON file
 csv_paths = [
-    r'C:\Users\Acer\OneDrive\Desktop\UKM\Sem 5\FYP\dataset\tweets_final_1_clean.csv',
-    r'C:\Users\Acer\OneDrive\Desktop\UKM\Sem 5\FYP\dataset\tweets_final_2_clean.csv',
-    r'C:\Users\Acer\OneDrive\Desktop\UKM\Sem 5\FYP\dataset\tweets_final_3_clean.csv',
-    r'C:\Users\Acer\OneDrive\Desktop\UKM\Sem 5\FYP\dataset\tweets_final_4_clean.csv',
-    r'C:\Users\Acer\OneDrive\Desktop\UKM\Sem 5\FYP\dataset\tweets_final_5_clean.csv',
-    r'C:\Users\Acer\OneDrive\Desktop\UKM\Sem 5\FYP\dataset\tweets_final_6_clean.csv'
+    'tweets_final_1_clean.csv',
+    'tweets_final_2_clean.csv',
+    'tweets_final_3_clean.csv',
+    'tweets_final_4_clean.csv',
+    'tweets_final_5_clean.csv',
+    'tweets_final_6_clean.csv'
 ]
-json_file_path = r"C:\Users\Acer\OneDrive\Desktop\UKM\Sem 5\FYP\dataset\depression_lexicon.json"
+json_file_path = 'depression_lexicon.json'
 model_path = r"C:\Users\Acer\OneDrive\Desktop\UKM\Sem 5\FYP\dataset\best_model_symptoms_all_pipeline.pkl"
 
 combined_df, df_json = load_preprocessed_data(csv_paths, json_file_path)
